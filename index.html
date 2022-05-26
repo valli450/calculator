@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="stylesheet" href="./style.css" type="text/css">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css" type="text/css">
+  
+  <title>Frontend Mentor | Calculator app</title>
+</head>
+<body>
+  <div class="whale-section">
+    <header class="header">
+      <div class="header__text">
+        <h1>calc</h1>
+      </div>
+      <div class="header__theme">
+        <div class="header__theme__text">
+          <p>Theme</p>
+        </div>
+        <div class="header__theme__toggle">
+          <div class="header__theme__toggle__numbers">
+            <ul>
+              <li onclick="changebgr('1')">1</li>
+              <li onclick="changebgr('2')">2</li>
+              <li onclick="changebgr('3')">3</li>
+            </ul>
+          </div>
+          <div class="header__theme__toggle__block">
+            <div class="block-opacity" id='one' onclick="changebgr('1')"></div>
+            <div class="block-opacity" id='two' onclick="changebgr('2')"></div>
+            <div class="block-opacity" id='three' onclick="changebgr('3')"></div>
+            <div class="toggle-slider"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="content">
+      <div class="content__input">
+        <input  class="number-input" placeholder="0" type="text"  onkeypress="return event.key ? /^(\d+|\*\*|[+\-*/.])$/.test(event.key) : '', mainTest(event)" onkeyup="manualInsert()"/>
+      </div>
+      <div class="content__numbers numbers">
+        <div class="numbers__row">
+          <div class="numbers__row__column" onclick="buttonInput('7')">
+            <p>7</p>
+          </div>
+          <div class="numbers__row__column" onclick="buttonInput('8')">
+            <p>8</p>
+          </div>
+          <div class="numbers__row__column" onclick="buttonInput('9')">
+            <p>9</p>
+          </div>
+          <div class="numbers__row__column delete" onclick="deleteLast()">
+            <p>del</p>
+          </div>
+        </div>
+        <div class="numbers__row">
+          <div class="numbers__row__column" onclick="buttonInput('4')">
+            <p>4</p>
+          </div>
+          <div class="numbers__row__column" onclick="buttonInput('5')">
+            <p>5</p>
+          </div>
+          <div class="numbers__row__column" onclick="buttonInput('6')">
+            <p>6</p>
+          </div>
+          <div class="numbers__row__column plus" onclick="buttonInput('+')">
+            <p>+</p>
+          </div>
+        </div>
+        <div class="numbers__row">
+          <div class="numbers__row__column" onclick="buttonInput('1')">
+            <p>1</p>
+          </div>
+          <div class="numbers__row__column" onclick="buttonInput('2')">
+            <p>2</p>
+          </div>
+          <div class="numbers__row__column" onclick="buttonInput('3')">
+            <p>3</p>
+          </div>
+          <div class="numbers__row__column minus" onclick="buttonInput('-')">
+            <p>-</p>
+          </div>
+        </div>
+        <div class="numbers__row">
+          <div class="numbers__row__column" onclick="buttonInput('.')">
+            <p>.</p>
+          </div>
+          <div class="numbers__row__column" onclick="buttonInput('0')">
+            <p>0</p>
+          </div>
+          <div class="numbers__row__column" onclick="buttonInput('/')">
+            <p>/</p>
+          </div>
+          <div class="numbers__row__column mult" onclick="buttonInput('*')">
+            <p>x</p>
+          </div>
+        </div>
+        <div class="numbers__row-bottom">
+          <div class="numbers__row__column__bottom reset" onclick="reset()">
+            <p>Reset</p>
+          </div>
+          <div class="numbers__row__column__bottom equal" onclick="result()">
+            <p>=</p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="attribution">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+        Coded by <a href="#">Your Name Here</a>.
+      </div>
+    </footer>
+  </div>
+  <script src="./main.js"></script>
+  <script>
+    function mainTest(l) {
+      if( /^(\d+|\*\*|[+\-*/.])$/.test(l.key)){
+        if(l.key === "." && l.target.value.includes(".")){
+          return false;
+        }else if(l.key === "0"){
+          if(l.target.value[0] === '0' && l.target.value[1] !== '.'){
+            return false;
+          }else{
+            return true;
+          }
+        }else if(l.key === "+" || l.key === "-" || l.key === "*" || l.key === "/"){
+          if(l.target.value.includes("+") || l.target.value.includes("-") || l.target.value.includes("*") || l.target.value.includes("/")){
+            return false;
+          }
+        }
+      }else{
+        return false;
+      }
+    }
+  </script>
+</body>
+</html>
